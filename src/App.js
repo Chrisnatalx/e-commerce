@@ -10,7 +10,7 @@ const handleCount =(cant)=>{
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor: 'lightBlue'}}>
+    <div className="App">
       <NavBar/>
       <ItemListContainer greeting="Este es mi e-commerce"/>
       <ItemCount stock={5} initial={1} onAdd={handleCount}/>
