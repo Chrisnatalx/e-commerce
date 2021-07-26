@@ -1,7 +1,5 @@
-.card{
+.itemDetail{
     display: grid;
-    width: 400px;
     justify-content: center;
     align-items: center;
-    padding: 15px;
 }
