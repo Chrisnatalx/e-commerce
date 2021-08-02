@@ -4,7 +4,7 @@ import ItemListContainer from './components/itemListContainer/itemListContainer.
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemDetailCountainer from './components/itemListContainer/ItemDetailCountainer';
-import { Navbar } from 'react-bootstrap';
+
 
 
 
@@ -16,14 +16,14 @@ function App() {
         <NavBar/>
         <Switch>
           <Route exact path="/">
-            <Navbar/>
+            <ItemListContainer/>
           </Route>
-          <Route exact path="/category/:catId">
+          <Route exact patch="/category/:categoryId">
             <ItemListContainer greeting="Este es mi e-commerce"/>
           </Route>
           <Route>
             <ItemDetailCountainer/>
-          </Route>
+          </Route >
         </Switch>
         </div>
     </BrowserRouter>  

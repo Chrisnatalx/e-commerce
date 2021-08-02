@@ -1,8 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import CartWidget from '../cartwidget/cartwidget'
 import './Navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link} from 'react-router-dom'
 
 
 
@@ -17,13 +17,13 @@ function NavBar() {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-          <Link class="nav-link active" to="/category/:hombres">Hombres</Link>
+          <Link class="nav-link active" to="/category/hombres">Hombres</Link>
           </li>
           <li class="nav-item">
-            <Link class="nav-link active" to="/category/:niños">Niños</Link>
+            <Link class="nav-link active" to="/category/niños">Niños</Link>
           </li>
           <li class="nav-item">
-          <Link class="nav-link active" to="/category/:mujeres">Mujeres</Link>
+          <Link class="nav-link active" to="/category/mujeres">Mujeres</Link>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="/#" tabindex="-1" aria-disabled="true"><CartWidget></CartWidget></a>
