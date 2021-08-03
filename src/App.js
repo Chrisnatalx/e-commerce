@@ -15,15 +15,9 @@ function App() {
       <div className="App">
         <NavBar/>
         <Switch>
-          <Route exact path="/">
-            <ItemListContainer/>
-          </Route>
-          <Route exact patch="/category/:categoryId">
-            <ItemListContainer greeting="Este es mi e-commerce"/>
-          </Route>
-          <Route>
-            <ItemDetailCountainer/>
-          </Route >
+          <Route exact path="/"><ItemListContainer/></Route>
+          <Route exact path="/category/:categoryId"><ItemListContainer greeting="Este es mi e-commerce"/></Route>
+          <Route exact path="/items/:itemId"><ItemDetailCountainer/></Route >
         </Switch>
         </div>
     </BrowserRouter>  

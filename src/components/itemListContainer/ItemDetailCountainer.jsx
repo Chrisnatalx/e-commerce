@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 import ItemDetail from '../Item/ItemDetail'
 import buzomujer from '../../imagenes/buzomujer.jpg'
 
-const item= {
+const detalleItem= {
     nombre:'Buzo Levis mujer',
     descripcion: 'Buzo negro levis con mangas blancas y puños celestes',
     imagen:buzomujer,
@@ -10,7 +10,7 @@ const item= {
     }
 
     const task = new Promise((res)=>{
-        res(item)
+        res(detalleItem)
     },2000)
 
     const getMocks=()=>{
@@ -28,7 +28,7 @@ function ItemDetailCountainer() {
     console.log(Item)
     return (
         <div>
-            <ItemDetail item ={item}/>
+            <ItemDetail item ={detalleItem}/>
             
         </div>
     )
