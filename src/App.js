@@ -18,6 +18,7 @@ function App() {
           <Route exact path="/"><ItemListContainer/></Route>
           <Route exact path="/category/:categoryId"><ItemListContainer greeting="Este es mi e-commerce"/></Route>
           <Route exact path="/items/:itemId"><ItemDetailCountainer/></Route >
+          <Route exact path="/cart" ></Route>
         </Switch>
         </div>
     </BrowserRouter>  

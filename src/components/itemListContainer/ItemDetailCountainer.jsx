@@ -1,16 +1,10 @@
 import React, {useState,useEffect} from 'react'
+import {  useParams } from 'react-router-dom'
 import ItemDetail from '../Item/ItemDetail'
-import buzomujer from '../../imagenes/buzomujer.jpg'
-
-const detalleItem= {
-    nombre:'Buzo Levis mujer',
-    descripcion: 'Buzo negro levis con mangas blancas y puños celestes',
-    imagen:buzomujer,
-    precio: '$6000'
-    }
+import {productsMocks} from '../../mocks/productsMocks'
 
     const task = new Promise((res)=>{
-        res(detalleItem)
+        res(productsMocks)
     },2000)
 
     const getMocks=()=>{
@@ -18,17 +12,20 @@ const detalleItem= {
     }
 
 function ItemDetailCountainer() {
-    const  [Item, setItem] = useState([])
-
+    const  [item, setItem] = useState([])
+    const { itemId } = useParams();
     useEffect(() => {
         getMocks()
-        .then(resp => setItem(resp))
+        .then(resp =>{
+            setItem(resp.find((item) => item.id === parseInt(itemId)))
+        })
         
-    }, [])
-    console.log(Item)
+    }, [itemId])
+    console.log(item)
+    console.log(itemId)
     return (
         <div>
-            <ItemDetail item ={detalleItem}/>
+            <ItemDetail item={item}/>
             
         </div>
     )
