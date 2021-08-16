@@ -26,7 +26,7 @@ function NavBar() {
           <Link className="nav-link active" to="/category/mujeres">Mujeres</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link disabled" href="/#" tabIndex="-1" aria-disabled="true"><CartWidget></CartWidget></a>
+          <Link className="nav-link active" to="/cart"><CartWidget></CartWidget></Link>
           </li>
         </ul>
       </div>

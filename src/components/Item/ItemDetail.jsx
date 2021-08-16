@@ -16,8 +16,7 @@ function ItemDetail({item ={}}) {
             <div className="card">
                 <img src={item.img} className="card-img-top" alt={item.producto}></img>
                 <div className="card-body">
-                <h5 className="card-title">{item.nombre}</h5>
-                <p className="card-text">{item.descripcion}</p>
+                <h5 className="card-title">{item.descripcion}</h5>
                 <p className="card-text">{item.precio}</p>
                 {
                     isInCart(item.id)? 
