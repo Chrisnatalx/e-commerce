@@ -1,13 +1,50 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import CartContext from "../../CartContext";
 import { Link } from "react-router-dom";
+import { getFirestore } from "../../database/firebaseService";
+import "firebase/firestore";
+import firebase from "firebase";
 
 function Cart() {
   const { cart, removeProduct, clearCart } = useContext(CartContext);
+  const [buyer, setBuyer] = useState(initialState);
+  const [orderFinalized, setOrderFinalized] = useState(false);
+  const [orderID, setOrderID] = useState(null);
+  //const buyer ={name:'christian',phone:'12345',email:'c@gmail.com'}
+  const order = {
+    buyer,
+    item: cart,
+    date: firebase.firestore.Timestamp.fromDate(new Date()),
+  };
+  const handlerChange = (evt) => {
+    setBuyer({
+      ...buyer,
+      [evt.target.name]: evt.target.value,
+    });
+  };
+  const validateEmailsAreEquals = () => {
+    const { email, confirmEmail } = buyer;
+    if (!email || !confirmEmail) return false;
+    return email === confirmEmail;
+  };
+  const handlerSubmit = (evt) => {
+    evt.preventDefault();
+    const db = getFirestore();
+    db.collection("order")
+      .add(order)
+      .then((resp) => {
+        setOrderID(resp.id);
+        setOrderFinalized(true);
+        console.log(resp);
+      })
+      .catch((err) => console.log(err));
+  };
+
   let total = 0;
-  return (
+  const emailsAreEquals = validateEmailsAreEquals();
+  return !orderFinalized ? (
     <div>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">Nombre</th>
@@ -52,8 +89,53 @@ function Cart() {
       <Link className="btn btn-primary" to="/">
         Inicio
       </Link>
+      <br></br>
+      <br></br>
+
+      <form onSubmit={handlerSubmit} onChange={handlerChange}>
+        <input
+          type="texto"
+          placeholder="Nombre"
+          name="name"
+          value={buyer.name}
+          onChange={() => {}}
+        />
+        <input
+          type="texto"
+          placeholder="Telefono"
+          name="phone"
+          value={buyer.phone}
+          onChange={() => {}}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={buyer.email}
+          onChange={() => {}}
+        />
+        <input
+          type="email"
+          placeholder="Confirme email"
+          name="confirmEmail"
+          value={buyer.confirmEmail}
+          onChange={() => {}}
+        />
+        <br></br>
+        <br></br>
+        {emailsAreEquals && <button className="btn btn-primary">enviar</button>}
+      </form>
     </div>
+  ) : (
+    <div>Orden Finalizada con el ID : {orderID}</div>
   );
 }
 
 export default Cart;
+
+const initialState = {
+  name: "",
+  phone: "",
+  email: "",
+  confirmEmail: "",
+};

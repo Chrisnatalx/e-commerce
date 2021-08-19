@@ -12,11 +12,14 @@ export function CartContextProvider({ children }) {
 
   const addProduct = (product, quantity) => {
     if (isInCart(product.id)) {
-      alert("el producto ya se encuentra en el carrito");
-      return;
+      const newCart = cart.map((x) => {
+        if (x.product.id === product.id) x.quantity += quantity;
+        return x;
+      });
+      setCart(newCart);
+    } else {
+      setCart([...cart, { product, quantity }]);
     }
-
-    setCart([...cart, { product, quantity }]);
   };
 
   const removeProduct = (productId) => {

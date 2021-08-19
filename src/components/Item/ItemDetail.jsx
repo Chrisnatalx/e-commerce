@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CartContext from "../../CartContext";
 import "./ItemDetail.css";
 import ItemCount from "../ItemCount.jsx/ItemCount";
 import { Link } from "react-router-dom";
 
 function ItemDetail({ item = {} }) {
-  const { addProduct, isInCart } = useContext(CartContext);
+  const { addProduct } = useContext(CartContext);
+  const [addedToCart, setaddedToCart] = useState(false);
   const handleCount = (cant) => {
     addProduct(item, cant);
+    setaddedToCart(!addedToCart);
   };
 
-  const { url, nombre, id, precio } = item;
+  const { url, nombre, precio } = item;
   return (
     <div className="itemDetail">
       <div className="card">
@@ -18,7 +20,7 @@ function ItemDetail({ item = {} }) {
         <div className="card-body">
           <h5 className="card-title">{nombre}</h5>
           <p className="card-text">{precio}</p>
-          {isInCart(id) ? (
+          {addedToCart === true ? (
             <Link className="btn btn-primary" to="/cart">
               Terminar compra
             </Link>
