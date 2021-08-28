@@ -123,7 +123,9 @@ function Cart() {
         />
         <br></br>
         <br></br>
-        {emailsAreEquals && <button className="btn btn-primary">enviar</button>}
+        {emailsAreEquals && (
+          <button className="btn btn-primary">Finalizar compra</button>
+        )}
       </form>
     </div>
   ) : (
